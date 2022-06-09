@@ -22,8 +22,8 @@ WORKDIR /home/jupyter
 
 RUN git clone https://github.com/nlp-with-transformers/notebooks
 RUN mkdir env
-RUN python3 -mvenv ./env
-RUN /home/jupyter/env/pip install -U pip wheel setuptools
-RUN /home/jupyter/env/pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
-RUN /home/jupyter/env/pip install jupyterlab ipywidgets datasets tqdm transformers bertviz matplotlib
-#CMD rstudio-server start && sleep infinity
+RUN python3 -mvenv env
+RUN env/bin/pip install -U pip wheel setuptools
+RUN env/bin/pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
+RUN env/bin/pip install jupyterlab ipywidgets datasets tqdm transformers bertviz matplotlib seqeval
+CMD ["/home/jupyter/env/bin/jupyter-lab","--ip","0.0.0.0"]
