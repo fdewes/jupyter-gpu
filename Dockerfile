@@ -14,7 +14,8 @@ RUN apt-get install -y git \
 			python3 \
 			python3-dev \
 			python3-pip \
-			python3-venv 
+			python3-venv \
+			wget 
 
 RUN useradd -ms /bin/bash jupyter
 USER jupyter
@@ -25,5 +26,5 @@ RUN mkdir env
 RUN python3 -mvenv env
 RUN env/bin/pip install -U pip wheel setuptools
 RUN env/bin/pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
-RUN env/bin/pip install jupyterlab ipywidgets datasets tqdm transformers bertviz matplotlib seqeval
+RUN env/bin/pip install jupyterlab ipywidgets datasets tqdm transformers bertviz matplotlib seqeval nltk haystack
 CMD ["/home/jupyter/env/bin/jupyter-lab","--ip","0.0.0.0"]
